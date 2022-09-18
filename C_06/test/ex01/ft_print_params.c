@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_print_params.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 14:26:29 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/12 10:52:32 by jwintzer         ###   ########.fr       */
+/*   Created: 2022/09/08 10:15:33 by jwintzer          #+#    #+#             */
+/*   Updated: 2022/09/08 12:35:02 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
-{
-	int	value;
+#include <unistd.h>
 
-	value = 1;
-	if (nb == 0)
-		return (1);
-	if (nb < 0)
-		return (0);
-	while (nb > 0)
+void	ft_print_params(char *param)
+{
+	int	i;
+
+	i = 0;
+	while (param[i])
 	{
-		value *= nb;
-		nb--;
+		write(1, &param[i], 1);
+		i++;
 	}
-	return (value);
+}
+
+int	main(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		ft_print_params(argv[i]);
+		i++;
+		write(1, "\n", 1);
+	}
 }

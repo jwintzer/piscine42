@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_boolean.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 14:26:29 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/12 10:52:32 by jwintzer         ###   ########.fr       */
+/*   Created: 2022/09/16 09:38:08 by jwintzer          #+#    #+#             */
+/*   Updated: 2022/09/16 10:27:10 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
-{
-	int	value;
+#ifndef FT_BOOLEAN_H
+# include <unistd.h>
+# define FT_BOOLEAN_H
 
-	value = 1;
-	if (nb == 0)
-		return (1);
-	if (nb < 0)
-		return (0);
-	while (nb > 0)
-	{
-		value *= nb;
-		nb--;
-	}
-	return (value);
-}
+typedef int	t_bool;
+# define EVEN(x) x % 2 == 0
+# define TRUE 1
+# define FALSE 0
+# define EVEN_MSG "I have an even number of arguments.\n"
+# define ODD_MSG "I have an odd number of arguments.\n"
+# define SUCCESS 0
+#endif

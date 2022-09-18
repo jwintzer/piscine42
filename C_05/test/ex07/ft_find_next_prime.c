@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 14:26:29 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/12 10:52:32 by jwintzer         ###   ########.fr       */
+/*   Created: 2022/09/09 09:26:37 by jwintzer          #+#    #+#             */
+/*   Updated: 2022/09/13 18:17:10 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int	ft_iterative_factorial(int nb)
+int	ft_find_next_prime(int nb)
 {
-	int	value;
+	int	i;
+	int	isok;
 
-	value = 1;
-	if (nb == 0)
-		return (1);
-	if (nb < 0)
-		return (0);
-	while (nb > 0)
+	if (nb < 2)
+		return (2);
+	while (1)
 	{
-		value *= nb;
-		nb--;
+		i = 2;
+		isok = 1;
+		while (i <= nb / i)
+		{
+			if (nb % i == 0)
+			{
+				nb++;
+				isok = 0;
+				break ;
+			}
+			i++;
+		}
+		if (isok == 1)
+			return (nb);
 	}
-	return (value);
 }

@@ -1,73 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fr_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:59:30 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/06 13:59:37 by jwintzer         ###   ########.fr       */
+/*   Updated: 2022/09/12 08:51:04 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	call_write(char *a, char sign, char z)
+void	recursive(int nb, int diviseur, int print)
 {
-	unsigned char	i;
-	unsigned char	j;
+	char	c;
 
-	j = 0;
-	i = 0;
-	if (sign == '-')
-		write(1, &sign, 1);
-	if (z == 'b')
-		a[9] = '8';
-	while (a[j] == '0')
-		j ++;
-	while (i < 10)
-	{
-		if (i >= j)
-			write(1, &a[i], 1);
-		i++;
-	}
-}
-
-void	following(char sign, int nb, char z)
-
-{
-	char	a[10];
-
-	a[0] = nb / 1000000000 + '0';
-	a[1] = nb % 1000000000 / 100000000 + '0';
-	a[2] = nb % 100000000 / 10000000 + '0';
-	a[3] = nb % 10000000 / 1000000 + '0';
-	a[4] = nb % 1000000 / 100000 + '0';
-	a[5] = nb % 100000 / 10000 + '0';
-	a[6] = nb % 10000 / 1000 + '0';
-	a[7] = nb % 1000 / 100 + '0';
-	a[8] = nb % 100 / 10 + '0';
-	a[9] = nb % 10 + '0';
-	call_write (a, sign, z);
+	if (diviseur < 1)
+		return ;
+	c = nb / diviseur + '0';
+	if (c != '0')
+		print = 1;
+	if (print == 1)
+		write(1, &c, 1);
+	recursive(nb % diviseur, diviseur / 10, print);
 }
 
 void	ft_putnbr(int nb)
 {
-	char	sign;
-	char	z;
-
-	z = 'a';
+	if (nb == 0)
+	{
+		write(1, "0", 1);
+		return ;
+	}
 	if (nb == -2147483648)
 	{
-		nb = -2147483640;
-		z = 'b';
+		write(1, "-2147483648", 11);
+		return ;
 	}
-	if (nb <= 0)
+	if (nb < 0)
 	{
-		sign = '-';
-		nb = nb - 2 * nb;
+		nb = -nb;
+		write(1, "-", 1);
 	}
-	else
-		sign = '0';
-	following(sign, nb, z);
+	recursive(nb, 1000000000, 0);
 }

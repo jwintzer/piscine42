@@ -6,53 +6,60 @@
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 09:48:22 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/07 14:59:10 by jwintzer         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:15:16 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-void	following(int nbr, char *base, int base_size);
-
-void	ft_putnbr_base(int nbr, char *base)
+int	test_base(char *base)
 {
 	int	i;
 	int	i2;
 
 	i = 0;
-	if (!(base[0] && base[1]))
-		return ;
 	while (base[i])
 	{
-		i2 = i + 1;
 		if (base[i] == '+' || base[i] == '-')
-			return ;
+			return (0);
 		if (base[i] < 32 || base[i] > 126)
-			return ;
+			return (0);
+		i2 = i + 1;
 		while (base[i2])
 		{
 			if (base[i] == base[i2])
-				return ;
+				return (0);
 			i2++;
 		}
 		i++;
 	}
-	following(nbr, base, i);
+	if (i < 2)
+		return (0);
+	return (1);
 }
 
-void	following(int nbr, char *base, int base_size)
+void	ft_putnbr_base(int nbr, char *base)
 {
-	if (nbr < 0)
+	int			base_size;
+	long int	nbr2;
+
+	if (!test_base(base))
+		return ;
+	base_size = 0;
+	nbr2 = (long int) nbr;
+	if (nbr2 < 0)
 	{
-		nbr = -nbr;
+		nbr2 *= -1;
 		write(1, "-", 1);
 	}
-	if (nbr / base_size == 0)
+	while (base[base_size])
+		base_size++;
+	if (nbr2 / base_size == 0)
 	{
-		write(1, &base[nbr % base_size], 1);
+		write(1, &base[nbr2 % base_size], 1);
 		return ;
 	}
-	following(nbr / base_size, base, base_size);
-	write(1, &base[nbr % base_size], 1);
+	ft_putnbr_base(nbr2 / base_size, base);
+	write(1, &base[nbr2 % base_size], 1);
 }

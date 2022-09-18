@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 14:26:29 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/12 10:52:32 by jwintzer         ###   ########.fr       */
+/*   Created: 2022/09/08 15:37:26 by jwintzer          #+#    #+#             */
+/*   Updated: 2022/09/08 17:49:02 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+int	recursive(int index, int nbr1, int nbr2, int nbr3)
 {
-	int	value;
+	if (index == 0)
+		return (nbr1);
+	nbr3 = nbr1 + nbr2;
+	index--;
+	return (recursive(index, nbr2, nbr3, nbr1));
+}
 
-	value = 1;
-	if (nb == 0)
-		return (1);
-	if (nb < 0)
-		return (0);
-	while (nb > 0)
-	{
-		value *= nb;
-		nb--;
-	}
-	return (value);
+int	ft_fibonacci(int index)
+{
+	int	nbr1;
+	int	nbr2;
+	int	nbr3;
+
+	nbr1 = 0;
+	nbr2 = 1;
+	nbr3 = 1;
+	if (index < 0)
+		return (-1);
+	return (recursive(index, nbr1, nbr2, nbr3));
 }
