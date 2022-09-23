@@ -6,12 +6,12 @@
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:52:59 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/21 16:09:32 by jwintzer         ###   ########.fr       */
+/*   Updated: 2022/09/21 10:38:59 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 int	ft_atoi_base(char *str, char *base);
 
@@ -137,9 +137,9 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	str = rev_str(str);
 	return (str);
 }
-
+/*
 int main(int argc, char **argv)
 {
 	(void)argc;
 	printf("%s", ft_convert_base(argv[1], argv[2], argv[3]));
-}
+}*/

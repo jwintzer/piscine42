@@ -1,52 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_is_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 11:36:27 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/19 09:51:32 by jwintzer         ###   ########.fr       */
+/*   Created: 2022/09/19 16:47:33 by jwintzer          #+#    #+#             */
+/*   Updated: 2022/09/22 19:48:55 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-//#include <stdio.h>
-
-char	*ft_strcpy(char *dest, char *src)
+int	ft_is_sort(int *tab, int length, int (*f)(int, int))
 {
 	int	i;
+	int	croiss;
+	int	decroiss;
 
-	i = 0;
-	while (src[i] != '\0')
+	i = 1;
+	croiss = 1;
+	decroiss = 1;
+	if (length <= 1)
+		return (1);
+	while (i < length)
 	{
-		dest[i] = src[i];
+		if (f(tab[i - 1], tab[i]) < 0)
+			decroiss = 0;
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*dst;
-	int		i;
-
-	i = 0;
-	while (src[i])
+	i = 1;
+	while (i < length)
+	{
+		if (f(tab[i - 1], tab[i]) > 0)
+			croiss = 0;
 		i++;
-	dst = malloc(sizeof(int) * (i + 1));
-	dst = ft_strcpy(dst, src);
-	return (dst);
+	}
+	if (croiss || decroiss)
+		return (1);
+	return (0);
 }
-
-/*
-int	main()
-{
-	char	a[9] = "test1234";
-	char	*b;
-
-	b = ft_strdup(a);
-	printf("%s", b);
-}
-*/

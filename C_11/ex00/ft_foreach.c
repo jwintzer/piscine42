@@ -1,52 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_foreach.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 11:36:27 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/19 09:51:32 by jwintzer         ###   ########.fr       */
+/*   Created: 2022/09/19 13:59:24 by jwintzer          #+#    #+#             */
+/*   Updated: 2022/09/19 15:48:07 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-//#include <stdio.h>
-
-char	*ft_strcpy(char *dest, char *src)
+void	ft_foreach(int *tab, int length, void (*f)(int))
 {
 	int	i;
 
 	i = 0;
-	while (src[i] != '\0')
+	while (i < length)
 	{
-		dest[i] = src[i];
+		f(tab[i]);
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
 }
-
-char	*ft_strdup(char *src)
-{
-	char	*dst;
-	int		i;
-
-	i = 0;
-	while (src[i])
-		i++;
-	dst = malloc(sizeof(int) * (i + 1));
-	dst = ft_strcpy(dst, src);
-	return (dst);
-}
-
-/*
-int	main()
-{
-	char	a[9] = "test1234";
-	char	*b;
-
-	b = ft_strdup(a);
-	printf("%s", b);
-}
-*/

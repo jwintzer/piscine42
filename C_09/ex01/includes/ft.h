@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwintzer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 12:37:26 by jwintzer          #+#    #+#             */
-/*   Updated: 2022/09/19 09:53:15 by jwintzer         ###   ########.fr       */
+/*   Created: 2022/09/14 17:15:39 by jwintzer          #+#    #+#             */
+/*   Updated: 2022/09/16 09:37:35 by jwintzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef FT_H
+# define FT_H
 
-int	*ft_range(int min, int max)
-{
-	int	*tab;
-	int	i;
-
-	if (min >= max)
-		return (0);
-	i = 0;
-	tab = malloc(sizeof(int) * (max - min));
-	while (i < (max - min))
-	{
-		tab[i] = min + i;
-		i++;
-	}
-	return (tab);
-}
+void	ft_putchar(char c);
+void	ft_swap(int *a, int *b);
+void	ft_putstr(char *str);
+int		ft_strlen(char *str);
+int		ft_strcmp(char *s1, char *s2);
+#endif
